@@ -3,16 +3,34 @@ import React, { Component } from 'react';
 export default class Temperature extends Component {
 	state = {
 		temperature: '',
-		message: '',
 	};
 
 	tellMe(num) {
-		if (num < 10) {
-			this.setState({ message: "It's cold ❄️" });
+		if (num === '') {
+			return <p></p>;
+		} else if (num < 10) {
+			return (
+				<p style={{ color: 'blue' }}>
+					{' '}
+					It's cold <span>❄️</span>
+				</p>
+			);
+			// this.setState({ message: "It's cold" });
 		} else if (num >= 10 && num < 30) {
-			this.setState({ message: "It's nice 🌼" });
-		} else if (num > 30) {
-			this.setState({ message: "It's warm ☀️" });
+			return (
+				<p style={{ color: 'orange' }}>
+					{' '}
+					It's nice <span>🌼</span>
+				</p>
+			);
+			// this.setState({ message: "It's nice 🌼" });
+		} else if (num >= 30) {
+			return (
+				<p style={{ color: 'red' }}>
+					It's warm <span>☀️</span>
+				</p>
+			);
+			// this.setState({ message: "It's warm ☀️" });
 		}
 	}
 
@@ -31,9 +49,10 @@ export default class Temperature extends Component {
 				<input
 					type="number"
 					name="temperature"
+					value={this.state.temperature}
 					onChange={this.handleChange}
 				></input>
-				<p>{this.state.message}</p>
+				{this.tellMe(this.state.temperature)}
 			</div>
 		);
 	}
