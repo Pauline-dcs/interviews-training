@@ -38,7 +38,7 @@ export default class Temperature extends Component {
 		let value = e.target.value;
 
 		this.setState({ [e.target.name]: value });
-		this.tellMe(value);
+		// this.tellMe(value);
 
 		// console.log(this.state);
 	};
